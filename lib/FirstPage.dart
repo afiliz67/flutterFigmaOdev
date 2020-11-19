@@ -2,10 +2,12 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'NotePage.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 Color boxColor = Colors.blueGrey.shade300;
 String phoneNumber = "********";
 String _email = "****@gmail.com";
+String nick = "Atakan YENİCELİ";
 
 class FirstPage extends StatefulWidget {
   @override
@@ -26,12 +28,12 @@ class _FirstPageState extends State<FirstPage> {
                 CircleAvatar(
                   backgroundColor: Colors.black,
                   radius: MediaQuery.of(context).size.height * 0.07,
-                  backgroundImage: AssetImage("images/mobil ödev icon.png"),
+                  backgroundImage: AssetImage("images/AvatarIcon.png"),
                 ),
               ],
             ),
             Text(
-              "Atakan YENİCELİ",
+              nick,
               style: TextStyle(
                   color: Colors.white,
                   fontStyle: FontStyle.italic,
@@ -39,6 +41,7 @@ class _FirstPageState extends State<FirstPage> {
                   letterSpacing: 1.5),
               textScaleFactor: MediaQuery.of(context).size.height * 0.002,
             ),
+            /*4 Container ile  mesaj,arama,whatsapp,email kısayolu oluşturuldu */
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -126,6 +129,7 @@ class _FirstPageState extends State<FirstPage> {
                 ),
               ],
             ),
+            /*Kişinin Numaraa Bilgisi */
             Row(
               children: [
                 GestureDetector(
@@ -150,7 +154,7 @@ class _FirstPageState extends State<FirstPage> {
                         ),
                         Row(
                           children: [
-                            Text("05549230107"),
+                            Text(phoneNumber),
                           ],
                         ),
                       ],
@@ -158,12 +162,13 @@ class _FirstPageState extends State<FirstPage> {
                   ),
                   onDoubleTap: () {
                     setState(() {
-                      boxColor = Colors.indigo;
+                      calling();
                     });
                   },
                 ),
               ],
             ),
+            /*Kişi ile Sohbet Başlatma */
             Row(
               children: [
                 GestureDetector(
@@ -196,6 +201,7 @@ class _FirstPageState extends State<FirstPage> {
                 ),
               ],
             ),
+            /*Kişi Hakkında Notlar */
             Row(
               children: [
                 GestureDetector(
@@ -233,6 +239,7 @@ class _FirstPageState extends State<FirstPage> {
                 ),
               ],
             ),
+            /*Kişinin kısa yolları */
             Row(
               children: [
                 Container(
@@ -273,7 +280,10 @@ class _FirstPageState extends State<FirstPage> {
                             onTap: () {
                               setState(
                                 () {
-                                  boxColor = Colors.yellow;
+                                  FlutterShare.share(
+                                      title: "Kisiyi Paylas",
+                                      text: nick,
+                                      linkUrl: phoneNumber);
                                 },
                               );
                             },
@@ -324,6 +334,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 }
 
+/*Whatsapp yönlendirme methodu */
 void whatsapp() async {
   String url = "whatsapp://send?phone=+9$phoneNumber";
   if (await canLaunch(url)) {
@@ -331,6 +342,7 @@ void whatsapp() async {
   }
 }
 
+/*sms yönlendirme methodu */
 void sms() async {
   String url = "sms:+$phoneNumber";
   if (await canLaunch(url)) {
@@ -338,6 +350,7 @@ void sms() async {
   }
 }
 
+/*email yönlendirme methodu */
 void eMail() async {
   String url = "mailto:$_email";
   if (await canLaunch(url)) {
@@ -345,6 +358,7 @@ void eMail() async {
   }
 }
 
+/*Kişiyi aramaya yönlendirme methodu */
 void calling() async {
   String url = "tel:$phoneNumber";
   if (await canLaunch(url)) {

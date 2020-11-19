@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   material_design_icons_flutter: 4.0.5755
   url_launcher: ^5.7.10
+  flutter_share: ^1.0.5
   #flutter_launch: ^0.2.0
 
 

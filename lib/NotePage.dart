@@ -6,7 +6,7 @@ class NotePage extends StatefulWidget {
   @override
   _NotePageState createState() => _NotePageState();
 }
-
+/*Kişi hakkında not ekleme sayfası  */
 class _NotePageState extends State<NotePage> {
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,12 @@ class _NotePageState extends State<NotePage> {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
+              /*Notun yazılacağı alan*/
               TextField(
                 controller: textEdition,
                 style: TextStyle(color: Colors.white),
                 cursorColor: Colors.white,
+                /*autofocus ekran çalıştığı anda not yazılan alaı aktif ediecek */
                 autofocus: true,
                 minLines: 1,
                 maxLines: MediaQuery.of(context).size.height ~/ 10,
